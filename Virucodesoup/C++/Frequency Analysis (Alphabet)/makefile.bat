@@ -1,0 +1,1 @@
+g++ Storer/storer.cpp frequencyAnalysis_Alphabet.cpp driver.cpp -o "Frequency Analysis Alphabet"
