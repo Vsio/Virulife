@@ -1,0 +1,14 @@
+################
+Format:
+
+[Name]
+[What he/she did]
+
+Example:
+
+Ice Creamer
+- Composer
+- Designer
+- Programmer
+
+################

@@ -1,0 +1,5 @@
+##Release Note##
+
+Version 1.0
+
+- Frotjzer is born from the distortion of copy of G-Projer 1.7

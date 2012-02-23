@@ -1,0 +1,1 @@
+Information about guide, contest link, or something similar are put here.
