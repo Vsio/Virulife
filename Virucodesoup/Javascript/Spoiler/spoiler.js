@@ -54,7 +54,7 @@ function Spoiler() {
 	{
 		document.write("<div name=\"spoiler"+_instanceVarStr+"\">")
 		document.write("<form name=\"f_spoiler_"+_instanceVarStr+"\" >");
-		document.write("Writes something below (Hint: You can use HTML tag too): <br /><textarea style=\"width:300px;\" name=\"ta_contentInput_"+_instanceVarStr+"\" onkeyup=\""+_instanceVarStr+".moves('content_"+_instanceVarStr+"',ta_contentInput_"+_instanceVarStr+");\" ></textarea>");
+		document.write("Writes something below : <br /><textarea style=\"width:300px;\" name=\"ta_contentInput_"+_instanceVarStr+"\" onkeyup=\""+_instanceVarStr+".moves('content_"+_instanceVarStr+"',ta_contentInput_"+_instanceVarStr+");\" ></textarea>");
 		document.write("</form><br />");
 		document.write("<div id=\"content_"+_instanceVarStr+"\" style=\" width:300px; height:auto; border-color: #000000; border: solid; border-width:1px; word-wrap:break-word; \"></div>");
 		document.write("<input id=\"i_doSpoiler_"+_instanceVarStr+"\" type=\"button\" value=\"Hide Content\" onclick=\""+_instanceVarStr+".showOrHideSpoiler('content_"+_instanceVarStr+"','i_doSpoiler_"+_instanceVarStr+"');\" /><br />");
