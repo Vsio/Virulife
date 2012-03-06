@@ -41,10 +41,12 @@ function Spoiler() {
 	this.moves = function(_nameElmContent, _formElmContentInput) 
 	/* moves content input from textarea into content area */
 	{
+		var preventHTML = /</g;
+		
 		if (this.stateHide_ == false) {
-			document.getElementById(_nameElmContent).innerHTML = _formElmContentInput.value;			
+			document.getElementById(_nameElmContent).innerHTML = _formElmContentInput.value.replace(preventHTML,'&lt;');			
 		}
-		this.content_ = _formElmContentInput.value;
+		this.content_ = _formElmContentInput.value.replace(preventHTML,'&lt;');
 	}
 	
 	this.display = function(_instanceVarStr) 
