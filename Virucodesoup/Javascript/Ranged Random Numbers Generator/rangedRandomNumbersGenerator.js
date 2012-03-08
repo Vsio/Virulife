@@ -37,6 +37,7 @@ function RangedRandomNumbersGenerator() {
 	this.display = function(_varStr) 
 	/* displays interface */
 	{
+		document.write("<div style=\"font-weight:bold;font-size:20px;\">Ranged Random Numbers Generator</div><br/>");
 		document.write("<div name=\"randomNumber"+_varStr+"\" >");
 		document.write("<form name=\"choice\" id=\"choice"+_varStr+"\" >");
 		document.write("Minimum :<input id=\"min_"+_varStr+"\" type=\"text\" /> <br /> ");
@@ -44,7 +45,7 @@ function RangedRandomNumbersGenerator() {
 		document.write("Result: <input id=\"result_"+_varStr+"\" type=\"text\" style=\"width:300px\" readonly=\"readonly\" />");
 		document.write("<input id=\"generate_"+_varStr+"\" type=\"button\" value=\"Generate Random Numbers\" onClick=\""+_varStr+".generateRandom('result_"+_varStr+"','min_"+_varStr+"','max_"+_varStr+"')\" />");
 		document.write("</form>");
-		document.write("</div>");
+		document.write("</div>");	
 	}
 
 }
