@@ -5,7 +5,7 @@
 # - Coded by (aka in cyber) Vsio Stitched
 #
 # Misc:
-# - Written in Ruby programming language
+# - Written in Python programming language
 #
 # License:
 # - Free to use
