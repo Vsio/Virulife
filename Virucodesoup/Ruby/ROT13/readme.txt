@@ -18,7 +18,7 @@ Files:
 - output.txt
 - readme.txt
 - rot13.rb
-- rot13_sceenshot.PNG
+- rot13_screenshot.PNG
 - run.bat
 
 Credit:
