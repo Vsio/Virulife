@@ -14,7 +14,7 @@ http://virucodesoup.blogspot.com/2012/03/python-hello-world.html
 
 Files:
 - helloWorld.py
-- helloWorld_sceenshot.PNG
+- helloWorld_screenshot.PNG
 - readme.txt
 - run.bat
 
