@@ -1,1 +1,1 @@
-ruby "factorial.rb"
+ruby "driver.rb"

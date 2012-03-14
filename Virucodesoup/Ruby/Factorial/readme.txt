@@ -13,8 +13,9 @@ Page:
 http://virucodesoup.blogspot.com/2012/03/ruby-factorial.html
 
 Files:
+- driver.rb
 - factorial.rb
-- factorial_sceenshot.PNG
+- factorial_screenshot.PNG
 - readme.txt
 - run.bat
 

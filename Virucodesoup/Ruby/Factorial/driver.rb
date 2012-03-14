@@ -1,5 +1,5 @@
 # ===========================
-# File : factorial.rb
+# File : driver.rb
 #
 # Credit:
 # - Coded by (aka in cyber) Vsio Stitched
@@ -12,15 +12,17 @@
 # - May include me or not in credit if included in other project
 # ===========================
 
+require_relative "factorial"
 
-def factorial(_value)
-# does factorial calculation
 
-	raise "Input must be higher than 0" unless (_value >= 0)
+print "\n===== FACTORIAL =====\n"
 
-	if (_value == 0)
-		return 1;
-	elsif (_value > 0)
-		return ( _value*factorial(_value-1) );
-	end
-end
+print "\n\n== START PROGRAM ==\n\n"
+
+print "Inputs a number: "; value = gets.strip;
+
+print factorial(value.to_i);
+
+print "\n\n== END PROGRAM ==\n\n"
+
+gets;
