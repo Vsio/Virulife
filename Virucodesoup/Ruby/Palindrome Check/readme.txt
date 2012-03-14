@@ -15,7 +15,7 @@ http://virucodesoup.blogspot.com/2012/03/ruby-palindrome-check.html
 Files:
 - driver.rb
 - palindromeCheck.rb
-- palindromeCheck_sceenshot.PNG
+- palindromeCheck_screenshot.PNG
 - readme.txt
 - run.bat
 
