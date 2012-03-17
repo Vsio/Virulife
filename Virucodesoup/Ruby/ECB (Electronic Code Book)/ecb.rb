@@ -189,7 +189,7 @@ class ECB
 	
 		if (_index == 0)
 			begin
-				file = File.new("output_encipher.txt","w")			
+				file = File.new("output_encipher.txt","wb")			
 				file.print @outputText_;
 				file.close;
 				puts "\n> ECB enciphering result has been saved into output_encipher.txt"
@@ -198,7 +198,7 @@ class ECB
 			end
 		elsif (_index == 1)
 			begin
-				file = File.new("output_decipher.txt","w")			
+				file = File.new("output_decipher.txt","wb")			
 				file.print @outputText_;
 				file.close;
 				puts "\n> ECB deciphering result has been saved into output_decipher.txt"
