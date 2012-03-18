@@ -98,42 +98,65 @@ class CBC
 		return iv
 	end
 	
+	def encryptionBlock(_plainText)
+	# encryption blocks (in this example, a simple xor encryption is used) (You can define your own Encryption Block here)
+		
+		output = ""
+		key = @key_
+		for i in 0..key.length-1
+			output += (_plainText[i].to_i ^ key[i].to_i).to_s			
+		end
+		
+		return output
+	end
+	
+	def decryptionBlock(_cipherText)
+	# decryption blocks (in this example, a simple xor decryption is used) (You can define your own Decryption Block here)
+		
+		output = ""
+		key = @key_
+		for i in 0..key.length-1
+			output += (_cipherText[i].to_i ^ key[i].to_i).to_s			
+		end
+		
+		return output
+	end
+	
 	def encipher()
 	# enciphers with CBC method
 	
 		inputBit = @inputText_.unpack("B*")[0]
 		inputBitLength = inputBit.length
-		key = @key_
-		blockLength = key.length
-		blockPlain = "";
-		blockCipher = "";
+		blockLength = @key_.length
+		blockCipher = ""
+		blockTemp = ""
 		iv = generateIV()
 		output = ""
 		outputText = ""
 		i = 0
 		j = 0
 		
-		while (inputBit.length % key.length != 0)
+		while (inputBit.length % blockLength != 0)
 			inputBit += '0'
 		end
 		
-		for i in 0..key.length-1
-			blockCipher += (inputBit[j].to_i ^ iv[i].to_i ^ key[i].to_i).to_s			
+		for i in 0..blockLength-1
+			blockTemp += (inputBit[j].to_i ^ iv[i].to_i).to_s			
 			j += 1		
-		end		
+		end
 		
+		blockCipher = encryptionBlock(blockTemp)
 		output += blockCipher
-		blockPlain = blockCipher
-		blockCipher = ""
+		blockTemp = ""
 		
 		while (j != inputBit.length)			
-			for i in 0..key.length-1				
-				blockCipher += (inputBit[j].to_i ^ blockPlain[i].to_i ^ key[i].to_i).to_s
+			for i in 0..blockLength-1				
+				blockTemp += (blockCipher[i].to_i ^ inputBit[j].to_i).to_s					
 				j += 1
-			end	
+			end
+			blockCipher = encryptionBlock(blockTemp)
 			output += blockCipher
-			blockPlain = blockCipher
-			blockCipher = ""
+			blockTemp = ""
 		end
 		
 		output = output[0..inputBitLength-1]
@@ -155,40 +178,51 @@ class CBC
 
 		inputBit = @inputText_.unpack("B*")[0]
 		inputBitLength = inputBit.length
-		key = @key_
-		blockLength = key.length
-		blockPlain = ""
+		blockLength = @key_.length
 		blockCipher = ""
+		blockPlain = ""
 		blockTemp = ""
 		iv = loadIV()
 		output = ""
 		outputText = ""
+		tempText = ""
 		i = 0
 		j = 0
 		
-		while (inputBit.length % key.length != 0)
+		while (inputBit.length % blockLength != 0)
 			inputBit += '0'
 		end
 		
-		for i in 0..key.length-1
-			blockCipher += inputBit[j]
-			blockPlain += (blockCipher[i].to_i ^ iv[i].to_i^ key[i].to_i).to_s			
-			j += 1		
-		end		
+		blockCipher = decryptionBlock(inputBit[0..blockLength-1])
+			
+		for i in 0..blockLength-1
+			blockPlain += (blockCipher[i].to_i ^ iv[i].to_i).to_s			
+			j += 1
+		end
 		
 		output += blockPlain
-		blockPlain = ""
+		blockTemp = inputBit[0..blockLength-1]
+		blockPlain = ""		
+		blockCipher = ""
+		tempText = ""
 		
-		while (j != inputBit.length)			
-			for i in 0..key.length-1				
-				blockPlain += (inputBit[j].to_i ^ key[i].to_i ^ blockCipher[i].to_i).to_s
-				blockTemp += inputBit[j]
+		while (j != inputBit.length)
+			for i in 0..blockLength-1				
+				blockCipher += inputBit[j]
 				j += 1
-			end	
+			end
+			tempText = blockCipher
+				
+			blockCipher = decryptionBlock(blockCipher)
+			
+			for i in 0..blockLength-1
+				blockPlain += (blockCipher[i].to_i ^ blockTemp[i].to_i).to_s
+			end
 			output += blockPlain
+			blockTemp = tempText
 			blockPlain = ""
-			blockCipher = blockTemp
-			blockTemp = ""
+			blockCipher = ""	
+			
 		end
 		
 		output = output[0..inputBitLength-1]
@@ -257,7 +291,7 @@ class CBC
 	
 		if (_index == 0)
 			begin
-				file = File.new("output_encipher.txt","wb")			
+				file = File.new("output_encipher.txt","w")			
 				file.print @outputText_;
 				file.close;
 				puts "\n> CBC enciphering result has been saved into output_encipher.txt"
