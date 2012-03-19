@@ -81,13 +81,38 @@ class ECB
 		@key_ = value
 	end
 	
+	def encryptionBlock(_plainText)
+	# encryption blocks (in this example, a simple xor encryption is used) (You can define your own Encryption Block here)
+		
+		output = ""
+		key = @key_
+		for i in 0..key.length-1
+			output += (_plainText[i].to_i ^ key[i].to_i).to_s			
+		end
+		
+		return output
+	end
+	
+	def decryptionBlock(_cipherText)
+	# decryption blocks (in this example, a simple xor decryption is used) (You can define your own Decryption Block here)
+		
+		output = ""
+		key = @key_
+		for i in 0..key.length-1
+			output += (_cipherText[i].to_i ^ key[i].to_i).to_s			
+		end
+		
+		return output
+	end
+	
 	def encipher()
 	# enciphers with ECB method
 	
 		inputBit = @inputText_.unpack("B*")[0]
 		inputBitLength = inputBit.length
 		key = @key_
-		blockLength = key.length		
+		blockLength = key.length	
+		blockTemp = ""		
 		output = ""
 		outputText = ""
 		i = 0
@@ -100,8 +125,11 @@ class ECB
 		while (i != inputBit.length)
 			
 			for j in 0..blockLength-1
-				output += (inputBit[j+i].to_i ^ key[j].to_i).to_s
+				blockTemp += inputBit[j+i]
 			end
+			
+			output += encryptionBlock(blockTemp)
+			blockTemp = ""
 			
 			j = 0
 			i += blockLength
@@ -127,7 +155,8 @@ class ECB
 		inputBit = @inputText_.unpack("B*")[0]
 		inputBitLength = inputBit.length
 		key = @key_
-		blockLength = key.length		
+		blockLength = key.length
+		blockTemp = ""
 		output = ""
 		outputText = ""
 		i = 0
@@ -140,8 +169,11 @@ class ECB
 		while (i != inputBit.length)
 			
 			for j in 0..blockLength-1
-				output += (inputBit[j+i].to_i ^ key[j].to_i).to_s
+				blockTemp += inputBit[j+i]
 			end
+			
+			output += decryptionBlock(blockTemp)
+			blockTemp = ""
 			
 			j = 0
 			i += blockLength
