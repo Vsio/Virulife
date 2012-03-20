@@ -209,22 +209,29 @@ void CaesarCipherASCII :: outputDisplay() {
 
 void CaesarCipherASCII :: inputFile() {
 	ifstream input;	
-	
 	string fileString = "";
+	string tempString = "";
+	
 	printf("\nInput file name: ");
 	cin >> fileString;		
 	input.open(fileString.c_str());
 	
 	if (!input) {
-	cout << "Can't open the file. \n";            
-	cin.sync();
-	cin.get();
-	exit(1);
+		cout << "Can't open the file. \n";            
+		cin.sync();
+		cin.get();
+		exit(1);
 	}
 	
-	while (!input.eof() ) {
-		getline(input, inputText_);
+	input >> noskipws;
+	
+	int i = 0;
+	while (!input.eof()) {
+		input >> tempString[i];		
+		inputText_ += tempString[i];
 	}
+	
+	inputText_ = inputText_.substr(0,inputText_.length()-1);
 	
 	input.close();
 }
