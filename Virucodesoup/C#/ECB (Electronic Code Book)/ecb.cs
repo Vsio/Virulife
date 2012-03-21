@@ -380,8 +380,14 @@ class ECB {
     public static void Main(String[] args)
     /* executes class program */
     {
+		
         ECB ecb = new ECB();
-        ecb.driver();
+        
+		System.Console.Write("\n===== ECB (Electronic Code Book) =====\n");
+		System.Console.Write("\n\n== START PROGRAM ==\n\n");
+		ecb.driver();
+		System.Console.Write("\n\n== END PROGRAM ==\n\n");
+		Console.ReadLine();
     }
 	
 }
