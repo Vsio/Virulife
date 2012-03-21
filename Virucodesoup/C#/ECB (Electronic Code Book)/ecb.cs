@@ -332,7 +332,7 @@ class ECB {
 			System.Console.Write("\nInput file name: ");
 			fileString = Console.ReadLine();
 			System.Console.WriteLine();
-			file = new System.IO.StreamReader(fileString);	
+			file = new StreamReader(fileString);	
 			this.inputText_ = file.ReadToEnd();
 			System.Console.WriteLine(this.inputText_);
 			file.Close();
@@ -343,11 +343,12 @@ class ECB {
 	}
 	
 	public void saveFile(int _index)
-	/* saves output a file */
+	/* saves output into a file */
 	{	
 		if (_index == 0) {
 			try {
-				StreamWriter file = new System.IO.StreamWriter("output_encipher.txt");
+				StreamWriter file = new StreamWriter("output_encipher.txt");
+				file.AutoFlush = true;
 				
 				file.Write(this.outputText_);
 				System.Console.WriteLine("\n> ECB enciphering result has been saved into output_encipher.txt");
@@ -357,7 +358,8 @@ class ECB {
 			}
 		} else if (_index == 1) {
 			try {
-				StreamWriter file = new System.IO.StreamWriter("output_decipher.txt");
+				StreamWriter file = new StreamWriter("output_decipher.txt");
+				file.AutoFlush = true;
 				
 				file.Write(this.outputText_);
 				System.Console.WriteLine("\n> ECB deciphering result has been saved into output_decipher.txt");
