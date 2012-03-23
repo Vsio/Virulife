@@ -1,1 +1,0 @@
-ruby "helloWorld.rb"
