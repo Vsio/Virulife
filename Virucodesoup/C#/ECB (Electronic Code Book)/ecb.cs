@@ -28,8 +28,9 @@ class ECB {
     private String inputText_; /* text input whicih will be encrypted or decrypted */
     private String key_; /* binary input */
     private String outputText_; /* text output which is resulted from encryption or decryption */
+	private byte[] outputBytes_; /* output in bytes */
 
-
+	
     // CONSTRUCTOR
 
     public ECB()
@@ -69,7 +70,12 @@ class ECB {
         return this.outputText_;
     }
 
-
+	public byte[] getOutputBytes()
+	/* returns outputBytes_ value */
+	{
+		return this.outputBytes_;
+	}
+	
     // ACCESSOR SET
 
     public void setInputText(String _newInputText)
@@ -90,7 +96,13 @@ class ECB {
         this.outputText_ = _newOutputText;
     }
 
-
+	public void setOutputBytes(byte[] _newOutputBytes)
+	/* returns outputBytes_ value */
+	{
+		this.outputBytes_ = _newOutputBytes;
+	}
+	
+	
     // PREDICATE
 
 	
@@ -102,13 +114,13 @@ class ECB {
 		String index = "0";
                 
         while (index[0] != '3') {
-            System.Console.WriteLine("\n\n==> MENU\n\n");
-            System.Console.WriteLine("1. Encrypt");
-            System.Console.WriteLine("2. Decrypt");
-            System.Console.WriteLine("3. Exit");
-            System.Console.Write("\nSelect a number : ");
+            Console.WriteLine("\n\n==> MENU\n\n");
+            Console.WriteLine("1. Encrypt");
+            Console.WriteLine("2. Decrypt");
+            Console.WriteLine("3. Exit");
+            Console.Write("\nSelect a number : ");
             index = Console.ReadLine();
-            System.Console.WriteLine();
+            Console.WriteLine();
             switch(index[0]) {
                 case '1': {
                     loadFile();
@@ -129,7 +141,7 @@ class ECB {
 					break;
                 }
                 default:{
-                    System.Console.WriteLine("> Invalid Input");
+                    Console.WriteLine("> Invalid Input");
                     index = "0";
 					break;
                 }
@@ -145,10 +157,10 @@ class ECB {
 		Regex regexConstraint = new Regex("^[0-1]+$");
 		
 		while (!regexConstraint.IsMatch(value)) {
-			System.Console.Write("\nInput binary string: ");
+			Console.Write("\nInput binary string: ");
 			value = Console.ReadLine();
 			if (!regexConstraint.IsMatch(value)) {
-				System.Console.WriteLine("> Error: Only 0 or 1 is allowed");				
+				Console.WriteLine("> Error: Only 0 or 1 is allowed");				
 			}
 		}
 		
@@ -183,46 +195,37 @@ class ECB {
 		return output;
 	}
 	
-	public string stringToBinary(string _string) 
-	/* converts string into binary */
+	public byte[] binaryStringToBytes(string _binaryString) 
+	/* converts binary string to binary bytes */
 	{
-		string input = _string;
-		string reversedStr = "";
-		UnicodeEncoding Unicode = new UnicodeEncoding();
+		string binary = _binaryString;
+		int i = 0;
+		int j = 0;
+		BitArray bits = new BitArray(8);
+		byte[] bytes = new byte[binary.Length/8];
 		
-		for (int i=input.Length-1;i!=-1;i-=1) {
-			reversedStr += input[i];
+		while (j!=binary.Length) {		
+			for (i=0;i!=8;i++) {
+				
+				bits.Set(i,(binary[j+i]=='1'?true:false));
+			}
+			
+			bits.CopyTo(bytes,j/8);
+			j+=8;
 		}
 		
-		byte[] stringBytes = Unicode.GetBytes(input);
-		BitArray bits = new BitArray(stringBytes);
-		string output = "";
-		
-		for (int i=0;i!=bits.Length;i+=1) {
-			output += (bits[i] ? '1' : '0');
-		}
-
-		return output;
+		return bytes;
 	}
 	
 	public char binaryToChar(string _binaryString) 
 	/* converts binary to char */
 	{
+		UTF8Encoding utf8 = new UTF8Encoding();
 		string binary = _binaryString;
-		int i = 0;
-		int measure = 0;
-		int total = 0;
+		byte[] bytes = binaryStringToBytes(binary);
+		string output = utf8.GetString(bytes);
 		
-		for (i=0;i!=binary.Length;i++) {
-			if (binary[binary.Length-1-i]=='0') {
-				measure = 0;
-			} else if (binary[binary.Length-1-i]=='1') {
-				measure = 1;
-			}
-			total += ((int)Math.Pow(2*measure,binary.Length-1-i)*measure);
-		}
-		
-		return (char)total;
+		return output[0];
 	}
 	
 	public string binaryToString(string _binaryString)
@@ -232,8 +235,8 @@ class ECB {
 		string output = "";
 		int i = 0;
 		while (i!=binaries.Length) {			
-			output += binaryToChar(binaries.Substring(i,16));
-			i+=16;
+			output += binaryToChar(binaries.Substring(i,8));
+			i+=8;
 		}
 		
 		return output;
@@ -247,8 +250,8 @@ class ECB {
 	
 	public void encipher()
 	/* enciphers with ECB method */
-	{	
-		string inputBit = stringToBinary(this.inputText_);
+	{
+		string inputBit = this.inputText_;
 		int inputBitLength = inputBit.Length;
 		String key = this.key_;
 		int blockLength = key.Length;
@@ -257,11 +260,11 @@ class ECB {
 		String outputText = "";
 		int i = 0;
 		int j = 0;
-
+		
 		while (inputBit.Length % blockLength != 0) {
 			inputBit += '0';
 		}
-
+		
 		while (i != inputBit.Length) {
 			
 			for (j=0;j!=blockLength;j++) {
@@ -273,21 +276,19 @@ class ECB {
 			j = 0;
 			i += blockLength;
 		}
-
+		
 		outputText = binaryToString(output.Substring(0,inputBitLength));
-
-		i = 0;
-		
 		this.outputText_ = outputText;
-		
-		System.Console.WriteLine("\n>Encryption Result:");
-		System.Console.WriteLine(outputText);
+		this.outputBytes_ = binaryStringToBytes(output.Substring(0,inputBitLength));
+
+		Console.WriteLine("\n>Encryption Result:");
+		Console.WriteLine(outputText);
 	}
 	
 	public void decipher()
 	/* deciphers with ECB method */
 	{
-		string inputBit = stringToBinary(this.inputText_);
+		string inputBit = this.inputText_;
 		int inputBitLength = inputBit.Length;
 		String key = this.key_;
 		int blockLength = key.Length;
@@ -312,32 +313,39 @@ class ECB {
 			j = 0;
 			i += blockLength;
 		}
-
+		
 		outputText = binaryToString(output.Substring(0,inputBitLength));
-		
-		i = 0;
-		
+		this.outputBytes_ = binaryStringToBytes(output.Substring(0,inputBitLength));
 		this.outputText_ = outputText;
-		System.Console.WriteLine("\n>Decryption Result:");
-		System.Console.WriteLine(outputText);
+		
+		Console.WriteLine("\n>Decryption Result:");
+		Console.WriteLine(outputText);
 	}
 	
 	public void loadFile()
 	/* loads input from a file */
 	{
-		System.IO.StreamReader file;
-		String fileString = "";
+		string fileString = "";
+		UTF8Encoding utf8 = new UTF8Encoding();
 		
 		try {			
-			System.Console.Write("\nInput file name: ");
+			Console.Write("\nInput file name: ");
 			fileString = Console.ReadLine();
-			System.Console.WriteLine();
-			file = new StreamReader(fileString);	
-			this.inputText_ = file.ReadToEnd();
-			System.Console.WriteLine(this.inputText_);
-			file.Close();
+			Console.WriteLine();
+			string output = "";			
+			byte[] bytes = File.ReadAllBytes(fileString);			
+			BitArray bits = new BitArray(bytes);
+	
+			for (int i=0;i!=bits.Length;i+=1) {
+				output += (bits[i] ? '1' : '0');
+			}
+			
+			String inputText = utf8.GetString(bytes);
+			Console.WriteLine(inputText);
+			this.inputText_ = output;
+			
 		} catch (Exception) {
-			System.Console.WriteLine("> File not found. Try again.");
+			Console.WriteLine("> File not found. Try again.");
 			loadFile();
 		}
 	}
@@ -347,25 +355,19 @@ class ECB {
 	{	
 		if (_index == 0) {
 			try {
-				StreamWriter file = new StreamWriter("output_encipher.txt");
-				file.AutoFlush = true;
-				
-				file.Write(this.outputText_);
-				System.Console.WriteLine("\n> ECB enciphering result has been saved into output_encipher.txt");
-				file.Close();
+				File.WriteAllBytes("output_encipher.txt", this.outputBytes_);				
+				Console.WriteLine("\n> ECB enciphering result has been saved into output_encipher.txt");
+			
 			} catch (Exception) {
-				System.Console.WriteLine("> File not found.");
+				Console.WriteLine("> File not found.");
 			}
 		} else if (_index == 1) {
 			try {
-				StreamWriter file = new StreamWriter("output_decipher.txt");
-				file.AutoFlush = true;
-				
-				file.Write(this.outputText_);
-				System.Console.WriteLine("\n> ECB deciphering result has been saved into output_decipher.txt");
-				file.Close();
+				File.WriteAllBytes("output_decipher.txt", this.outputBytes_);				
+				Console.WriteLine("\n> ECB deciphering result has been saved into output_dncipher.txt");
+			
 			} catch (Exception) {
-				System.Console.WriteLine("> File not found.");
+				Console.WriteLine("> File not found.");
 			}
 		}
 	}
@@ -385,10 +387,10 @@ class ECB {
 		
         ECB ecb = new ECB();
         
-		System.Console.Write("\n===== ECB (Electronic Code Book) =====\n");
-		System.Console.Write("\n\n== START PROGRAM ==\n\n");
+		Console.Write("\n===== ECB (Electronic Code Book) =====\n");
+		Console.Write("\n\n== START PROGRAM ==\n\n");
 		ecb.driver();
-		System.Console.Write("\n\n== END PROGRAM ==\n\n");
+		Console.Write("\n\n== END PROGRAM ==\n\n");
 		Console.ReadLine();
     }
 	
