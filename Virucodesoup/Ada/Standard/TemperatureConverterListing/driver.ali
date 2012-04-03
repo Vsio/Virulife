@@ -1,0 +1,60 @@
+V "GNAT Lib v4.5"
+M P W=b
+P SS
+R nnnnnnnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U driver%b		driver.adb		67767245 NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W temperatureconverterlisting%s  temperatureconverterlisting.adb  temperatureconverterlisting.ali
+
+D ada.ads		20111117070304 9c7dd3ea
+D a-except.ads		20111117070302 34786013
+D a-finali.ads		20111117070302 bfd2ca79
+D a-filico.ads		20111117070302 4ff02a40
+D a-flteio.ads		20111117070304 3407344a
+D a-inteio.ads		20111117070304 03bc737c
+D a-ioexce.ads		20111117070304 2504b9d2
+D a-stream.ads		20111117070304 34aca5be
+D a-tags.ads		20111117070304 bfa07446
+D a-textio.ads		20111117070304 7065b2f2
+D a-tiflio.ads		20111117070304 5d91823c
+D a-tiinio.ads		20111117070304 949a7272
+D a-unccon.ads		20111117070304 51e09df2
+D driver.adb		20111119061640 8469b2a7
+D interfac.ads		20111117070306 a69cad5c
+D i-cstrea.ads		20111117070306 e1e064a9
+D system.ads		20111117070314 b8eb58c3
+D s-crtl.ads		20111117070306 bf835650
+D s-exctab.ads		20111117070306 4b7fd51d
+D s-ficobl.ads		20111117070306 8bb681e5
+D s-finimp.ads		20111117070306 90fd9896
+D s-finroo.ads		20111117070306 1408f9d1
+D s-parame.ads		20111117070308 6cdeed25
+D s-secsta.ads		20111117070310 d2c357fb
+D s-soflin.ads		20111117070310 61e5c9e8
+D s-stache.ads		20111117070310 481f9e9d
+D s-stalib.ads		20111117070310 9cbc334a
+D s-stoele.ads		20111117070310 a4d57c26
+D s-stoele.adb		20111117070310 49ef69d7
+D s-stratt.ads		20111117070310 fef7c1da
+D s-traent.ads		20111117070310 a66ef260
+D s-unstyp.ads		20111117070310 c0f9fae5
+D s-wchcon.ads		20111117070312 30c48dc1
+D temperatureconverterlisting.ads  20111119061630 937a7210
+X 1 ada.ads
+16K9*Ada 19e8 14|14r6 22r9 23r9 24r9 25r9 26r9 31r9 32r9 33r9 34r9 35r9 37r9
+X 10 a-textio.ads
+49K13*Text_IO 472e16 14|14w10 22r13 23r13 24r13 25r13 26r13 31r13 32r13 33r13
+. 34r13 35r13 37r13
+241U14*Get 14|37r21
+264U14*Put_Line 14|22r21 23r21 24r21 25r21 26r21 31r21 32r21 33r21 34r21
+. 35r21
+X 14 driver.adb
+16U11*Driver 16b11 39l5 39t11
+18a9 pause{string} 37m25
+X 34 temperatureconverterlisting.ads
+17K9*TemperatureConverterListing 14|13w6 28r9 29r9 34|26e32
+23U11*HeaderText 14|28r37
+24U11*Main 14|29r37
+
