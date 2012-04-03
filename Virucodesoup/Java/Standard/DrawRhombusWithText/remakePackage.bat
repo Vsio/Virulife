@@ -1,0 +1,1 @@
+javac -d . drawRhombusWithText/Rhombus.java
