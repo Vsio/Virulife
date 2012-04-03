@@ -1,0 +1,1 @@
+g++ ecb.cpp driver.cpp -o "ECB"

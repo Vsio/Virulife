@@ -1,0 +1,1 @@
+g++ drawRhombusWithText.cpp driver.cpp -o DrawRhombusWithText
