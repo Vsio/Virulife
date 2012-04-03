@@ -1,0 +1,1 @@
+csc /out:DrawRhombusWithText.exe driver.cs drawRhombusWithText.cs
