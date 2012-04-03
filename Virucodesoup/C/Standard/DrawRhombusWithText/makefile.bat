@@ -1,0 +1,1 @@
+gcc drawRhombusWithText.c driver.c -o DrawRhombusWithText
