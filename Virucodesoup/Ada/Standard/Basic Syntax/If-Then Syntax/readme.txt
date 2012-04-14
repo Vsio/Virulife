@@ -2,8 +2,8 @@ Name:
 If-Then Syntax
 
 About:
-- Shows how to do If-Then statement in Ruby
-- Written in Ruby programming language
+- Shows how to do If-Then statement in Ada
+- Written in Ada programming language
 
 License:
 - Free to use
