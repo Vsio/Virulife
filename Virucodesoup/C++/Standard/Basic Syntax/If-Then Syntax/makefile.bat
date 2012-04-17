@@ -1,0 +1,1 @@
+g++ ifThen.cpp -o "IfThen"
