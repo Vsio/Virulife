@@ -17,6 +17,7 @@ Files:
 - db_virucodesoup.sql
 - index.html
 - readme.txt
+- searchBasedTag_screenshot.PNG
 - searchTagResut.jsp
 
 Credit:
