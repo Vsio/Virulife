@@ -15,7 +15,8 @@ http://virucodesoup.blogspot.com/2012/04/ruby-speaking-in-tongues-google-code.ht
 Files:
 - A-small-attempt0.in
 - driver.rb
-- gjs_SpeakingInTongues.rb
+- gcj_SpeakingInTongues.PNG
+- gcj_SpeakingInTongues.rb
 - input.txt
 - readme.txt
 - run.bat

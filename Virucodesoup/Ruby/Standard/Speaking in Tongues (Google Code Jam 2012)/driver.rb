@@ -12,13 +12,13 @@
 # - May include me or not in credit if included in other project
 # ===========================
 
-require_relative "gjs_SpeakingInTongues.rb"
+require_relative "gcj_SpeakingInTongues.rb"
 
-print "\n===== Google Jam Solver =====\n"
+print "\n===== Speaking in Toungues (Google Code Jam 2012) =====\n"
 print "\n\n== START PROGRAM ==\n\n"
 
-gjs = GJS_SpeakingInTongues.new
-gjs.driver()
+gcj = GCJ_SpeakingInTongues.new
+gcj.driver()
 
 print "\n\n== END PROGRAM ==\n\n"
 
