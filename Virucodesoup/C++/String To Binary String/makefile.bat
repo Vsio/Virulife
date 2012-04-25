@@ -1,1 +1,0 @@
-g++ stringToBinaryString.cpp driver.cpp -o "String To Binary String"

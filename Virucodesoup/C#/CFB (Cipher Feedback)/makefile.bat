@@ -1,1 +1,0 @@
-csc /out:CFB.exe cfb.cs

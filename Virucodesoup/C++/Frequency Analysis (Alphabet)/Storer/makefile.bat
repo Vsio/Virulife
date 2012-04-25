@@ -1,1 +1,0 @@
-g++ storer.cpp driver.cpp -o "Storer"

@@ -1,1 +1,0 @@
-csc /out:CBC.exe cbc.cs

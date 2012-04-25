@@ -1,1 +1,0 @@
-g++ FBH2012_AlphabetSoup.cpp driver.cpp -o FBH2012_AlphabetSoup

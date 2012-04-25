@@ -1,1 +1,0 @@
-gcc temperatureConverterListing.c mTemperatureConverterListing.c -o TemperatureConverterListing
