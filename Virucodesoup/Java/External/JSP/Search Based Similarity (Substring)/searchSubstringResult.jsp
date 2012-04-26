@@ -69,7 +69,7 @@ License:
 			out.println("<div>Search result contains substring \""+substringFilter+"\" with "+id.size()+" result(s) : </div><br />");
 			for (int i=0;i!=id.size();i+=1) {
 				out.println("<div style=\"font-weight:bold;\">"+(i+1)+". "+title.get(i)+"</div>");
-				out.println("<div>substring: "+tag.get(i)+"</div><br />");
+				out.println("<div>Tag(s): "+tag.get(i)+"</div><br />");
 			}
 		%>
 	</body>
