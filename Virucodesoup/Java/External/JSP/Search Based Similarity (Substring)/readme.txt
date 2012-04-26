@@ -11,7 +11,7 @@ License:
 - May include me or not in credit if included in other project
 
 Page:
-http://virucodesoup.blogspot.com/2012/04/search-based-similarity-substring.html
+http://virucodesoup.blogspot.com/2012/04/java-jsp-search-based-similarity.html
 
 Files:
 - db_virucodesoup.sql
